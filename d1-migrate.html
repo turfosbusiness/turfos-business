@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TurfOS — Move data to D1</title>
+<style>
+:root{--bg:#F5F7F2;--ink:#17221B;--muted:#718078;--line:#DDE4DB;--green:#67B83F;--soft:#EAF3E5}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);padding:24px}.wrap{max-width:760px;margin:40px auto}.card{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:24px;padding:26px;backdrop-filter:blur(20px)}h1{font-size:38px;letter-spacing:-1.4px;margin:0 0 10px}p{line-height:1.55;color:var(--muted)}.status{padding:14px;border-radius:14px;background:var(--soft);margin:16px 0;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}.btn,input{font:inherit;border-radius:12px;border:1px solid var(--line);padding:12px 14px}.btn{background:var(--green);color:#fff;border-color:var(--green);font-weight:800;cursor:pointer}.btn:disabled{opacity:.55;cursor:not-allowed}input{width:100%;margin:8px 0;background:#fff}.small{font-size:12px;color:var(--muted)}code{background:var(--soft);padding:2px 5px;border-radius:6px}
+</style>
+</head>
+<body><main class="wrap"><div class="card">
+<div class="small">TurfOS storage migration</div><h1>Move TurfOS to D1</h1>
+<p>This one-time migration copies your existing TurfOS KV records into your connected D1 database. After it finishes, normal TurfOS account, customer, and workspace traffic uses D1 instead of KV.</p>
+<div id="health" class="status">Checking D1…</div>
+<p><strong>Best option:</strong> if you are already signed in as the existing business owner in this browser, just click the button below. TurfOS will use your current owner session to authorize the migration.</p>
+<label class="small">Optional migration secret (only if owner-session authorization does not work)</label>
+<input id="secret" type="password" autocomplete="off" placeholder="D1_MIGRATION_SECRET — leave blank if already signed in">
+<button class="btn" id="go" onclick="migrate()">Move existing data to D1</button>
+<div id="result" class="status">Nothing has been changed yet.</div>
+<p class="small">Keep the old <code>TURFOS_ACCOUNTS</code> KV binding connected until you confirm your accounts and customers work in D1. The new app does not use KV for normal operations; it is only retained as a temporary migration/backup source.</p>
+</div></main>
+<script>
+async function health(){try{const r=await fetch('/api/auth-health',{cache:'no-store'}),d=await r.json();document.getElementById('health').textContent=`Primary storage: ${d.primaryStorage||'unknown'}\nD1: ${d.d1||'unknown'}\nD1 records: ${d.records??0}\nLegacy KV connected: ${d.legacyKvConnected?'yes':'no'}${d.migration?.completedAt?`\nLast migration: ${d.migration.completedAt}`:''}`}catch(e){document.getElementById('health').textContent='Could not reach the TurfOS Worker: '+e.message}}
+async function migrate(){const b=document.getElementById('go'),out=document.getElementById('result'),token=localStorage.getItem('turfos-auth-token-v1')||'',secret=document.getElementById('secret').value.trim();b.disabled=true;out.textContent='Copying existing TurfOS data into D1… Do not close this page.';try{const headers={};if(token)headers.Authorization='Bearer '+token;if(secret)headers['X-Migration-Secret']=secret;const r=await fetch('/api/d1/migrate',{method:'POST',headers}),d=await r.json();if(!r.ok)throw new Error(d.error||'Migration failed');out.textContent=`Migration complete.\nLegacy records found: ${d.listed}\nCopied to D1: ${d.copied}\nAlready in D1: ${d.skipped}\nD1 records now: ${d.d1Records}\n\nYou can now open TurfOS and test business login, customer login, and the customer signup link.`;await health()}catch(e){out.textContent='Migration did not finish: '+e.message+'\n\nIt is safe to run again. If your KV daily limit was reached, upgrade Workers or wait for the reset, then retry.'}finally{b.disabled=false}}
+health();
+</script></body></html>

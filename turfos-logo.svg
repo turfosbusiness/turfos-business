@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+  <title id="title">TurfOS logo</title>
+  <desc id="desc">A green location marker with striped turf and the word TurfOS.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#67B83F"/>
+      <stop offset=".5" stop-color="#67B83F"/>
+      <stop offset="1" stop-color="#4D9B2E"/>
+    </linearGradient>
+    <clipPath id="pinclip">
+      <path d="M90 12c-42 0-76 34-76 76 0 52 76 82 76 82s76-30 76-82c0-42-34-76-76-76z"/>
+    </clipPath>
+  </defs>
+  <g transform="translate(8 0)">
+    <path d="M90 12c-42 0-76 34-76 76 0 52 76 82 76 82s76-30 76-82c0-42-34-76-76-76z" fill="url(#g)"/>
+    <g clip-path="url(#pinclip)" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".96">
+      <path d="M22 126c30-23 70-39 132-43"/>
+      <path d="M31 146c38-27 78-42 127-44"/>
+      <path d="M54 162c28-22 58-35 96-39"/>
+    </g>
+    <path d="M73 92c15-34 43-50 73-53-5 31-22 57-57 69 3-19 17-35 37-48-23 8-41 22-53 32z" fill="#EAF3E5" opacity=".96"/>
+  </g>
+  <text x="194" y="116" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="82" font-weight="800" letter-spacing="-3" fill="#17221B">Turf</text>
+  <text x="351" y="116" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="82" font-weight="800" letter-spacing="-3" fill="#67B83F">OS</text>
+  <text x="198" y="146" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#718078">LAWN OPERATIONS</text>
+</svg>

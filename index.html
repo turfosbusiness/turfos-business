@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TurfOS — Sign in</title>
+<meta name="description" content="Sign in to TurfOS as a business or customer.">
+<meta name="theme-color" content="#F5F7F2">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#F5F7F2;--panel:rgba(255,255,255,.72);--ink:#17221B;--muted:#718078;--line:#DDE4DB;--green:#67B83F;--soft:#EAF3E5}
+*{box-sizing:border-box}body{margin:0;min-height:100svh;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:#F5F7F2;color:var(--ink);display:grid;place-items:center;padding:24px}
+.shell{width:min(780px,100%)}.brand{text-align:center;margin-bottom:38px}.brand img{width:min(220px,62vw);height:auto}.brand h1{font-size:clamp(34px,6vw,50px);line-height:1.03;margin:18px 0 9px;letter-spacing:-1.8px}.brand p{margin:0;color:var(--muted);font-size:16px;line-height:1.6}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:18px}.choice{display:block;background:var(--panel);border:1px solid rgba(220,228,218,.85);border-radius:24px;padding:30px;text-decoration:none;color:inherit;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:none;transition:.2s transform,.2s border-color,.2s background}.choice:hover{transform:translateY(-2px);border-color:#BCD8AF;background:rgba(255,255,255,.9)}.icon{width:58px;height:58px;border-radius:18px;background:var(--soft);display:grid;place-items:center;font-size:28px;margin-bottom:22px}.choice h2{font-size:25px;line-height:1.1;margin:0 0 9px}.choice p{color:var(--muted);line-height:1.55;margin:0 0 24px;min-height:50px}.go{display:flex;align-items:center;justify-content:space-between;background:var(--green);color:#fff;border-radius:14px;padding:14px 16px;font-weight:800}.customer .go{background:#17221B}
+.note{text-align:center;color:var(--muted);font-size:13px;margin-top:25px}.note a{text-decoration:underline;color:inherit}
+@media(max-width:620px){body{padding:20px 14px}.brand{margin-bottom:24px}.choices{grid-template-columns:1fr;gap:12px}.choice{padding:22px;border-radius:20px}.choice p{min-height:0}.icon{width:52px;height:52px;font-size:24px;margin-bottom:15px}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="brand"><img src="turfos-logo.png" alt="TurfOS" onerror="this.style.display='none'"><h1>Welcome to TurfOS</h1><p>Choose how you want to sign in.</p></div>
+  <div class="choices">
+    <a class="choice" href="business.html"><div class="icon">🏢</div><h2>Business</h2><p>Owners, managers, and crew members can log in or create a business account.</p><div class="go"><span>Business login / sign up</span><span>→</span></div></a>
+    <a class="choice customer" href="customer.html"><div class="icon">👤</div><h2>Customer</h2><p>Customers can log in or create an account for service information, invoices, and messages.</p><div class="go"><span>Customer login / sign up</span><span>→</span></div></a>
+  </div>
+  <div class="note">TurfOS platform · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div>
+</main>
+</body>
+</html>
