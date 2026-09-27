@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TurfOS — Lawn Intelligence</title>
+<!-- Host this over http(s) (e.g. Netlify, GitHub Pages, or `python3 -m http.server`). Imagery: Esri World Imagery. Geocoding: OpenStreetMap Nominatim (light use only). -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
+<link rel="manifest" href="../manifest.webmanifest"><link rel="icon" type="image/png" href="../assets/images/icon-192.png"><link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png"><meta name="theme-color" content="#67B83F"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+<aside class="sidebar">
+<a class="brand" href="../index.html" aria-label="TurfOS home"><img src="../assets/images/turfos-logo.png" alt="TurfOS" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'"><span style="display:none;font-weight:900;font-size:28px;color:#fff;letter-spacing:-1px">TurfOS</span></a>
+<div class="workspace-name" id="workspaceName"><strong>TurfOS</strong><span>Business workspace</span></div><div class="nav" id="nav"></div>
+<div class="pro"><strong>TURFOS ACTIVE</strong>Pattern rotation, route tracking, property analytics and customer reports.</div>
+</aside>
+<main>
+
+<section class="view active" id="dashboard"></section><section class="view" id="crew"></section>
+<section class="view" id="map"></section>
+<section class="view" id="history"></section>
+<section class="view" id="customers"></section>
+<section class="view" id="procare"></section>
+<section class="view" id="analytics"></section>
+<section class="view" id="settings"></section>
+<section class="view" id="route"></section><section class="view" id="customer"></section><section class="view" id="weather"></section><section class="view" id="health"></section><section class="view" id="portal"></section>
+</main>
+<div class="authgate" id="authgate"><div class="authbox"><div class="authbrand"><div><img src="../assets/images/turfos-logo.png" alt="TurfOS"><div class="authcopy"><h2>Run your lawn business from one place.</h2><p>Sign in to your TurfOS workspace to manage properties, routes, crews, weather delays, mowing intelligence, completion proof and invoices.</p></div></div><div class="small" style="color:#cfe2d5">Secure business accounts powered by your Cloudflare deployment.</div></div><div class="authpanel" id="authpanel"></div></div></div>
+<div class="modal" id="modal"><div class="mb" id="mbox"></div></div>
+<input type="file" id="imp" accept="application/json,.json" hidden onchange="importData(this)"><div class="install-banner" id="installBanner"><strong>Install TurfOS</strong><div class="small">Add the field app to this phone for faster crew access and offline startup.</div><div class="actions"><button class="btn primary" onclick="installTurfOS()">Install app</button><button class="btn" onclick="dismissInstall()">Later</button></div></div><div id="toast"></div>
+<script src="../js/app.js"></script>
+</body>
+</html>
